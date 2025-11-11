@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Download, Gift } from "lucide-react";
+import { Download, Gift, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import arvoreNatal from "@/assets/desenho-arvore-natal.jpg";
 import presepio from "@/assets/desenho-presepio.jpg";
 import papaiNoel from "@/assets/desenho-papai-noel.jpg";
 import anjinho from "@/assets/desenho-anjinho.jpg";
+import canvasScreenshot from "@/assets/drawing-canvas-screenshot.png";
 
 const freeDrawings = [
   {
@@ -112,6 +113,62 @@ export const FreeDrawingsSection = () => {
             <Gift className="w-5 h-5" />
             Ver Todos os Planos
           </Button>
+        </div>
+
+        {/* Platform Preview Section */}
+        <div className="mt-16 bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 rounded-3xl p-8 md:p-12 border border-primary/20">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 bg-primary/20 backdrop-blur-sm px-4 py-2 rounded-full mb-4 border border-primary/30">
+              <Sparkles className="w-5 h-5 text-primary animate-pulse" />
+              <span className="text-sm font-bold text-primary">
+                LOUSA DIGITAL INTERATIVA
+              </span>
+            </div>
+            <h3 className="text-2xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Desenhe Direto na Plataforma! 🎨
+            </h3>
+            <p className="text-base md:text-lg text-muted-foreground">
+              Ferramenta profissional de desenho incluída
+            </p>
+          </div>
+
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+            {/* Mobile Preview */}
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-20 blur-xl group-hover:opacity-30 transition-opacity rounded-3xl"></div>
+              <div className="relative bg-gradient-to-br from-background to-muted/30 p-4 rounded-3xl border-8 border-foreground/20 shadow-2xl transform group-hover:scale-105 transition-transform">
+                <img
+                  src={canvasScreenshot}
+                  alt="Lousa Digital Mobile"
+                  className="w-[280px] h-auto rounded-2xl"
+                />
+              </div>
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-foreground text-background px-4 py-1 rounded-full text-xs font-bold">
+                📱 iPhone
+              </div>
+            </div>
+
+            {/* Tablet Preview */}
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-r from-accent to-secondary opacity-20 blur-xl group-hover:opacity-30 transition-opacity rounded-3xl"></div>
+              <div className="relative bg-gradient-to-br from-background to-muted/30 p-6 rounded-3xl border-8 border-foreground/20 shadow-2xl transform group-hover:scale-105 transition-transform">
+                <img
+                  src={canvasScreenshot}
+                  alt="Lousa Digital Tablet"
+                  className="w-[380px] h-auto rounded-2xl"
+                />
+              </div>
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-foreground text-background px-4 py-1 rounded-full text-xs font-bold">
+                📱 iPad
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 text-center">
+            <p className="text-sm md:text-base text-muted-foreground">
+              ✨ Cores ilimitadas • 🖍️ Ferramentas profissionais • 💾 Salve suas criações
+            </p>
+          </div>
         </div>
       </div>
     </section>

@@ -5,7 +5,7 @@ import { Check, Sparkles, Gift } from "lucide-react";
 const comboKids = {
   name: "Combo Kids",
   originalPrice: "R$ 289,90",
-  price: "R$ 19,90",
+  price: "R$ 14,90",
   description: "🎄 SUPER BLACK FRIDAY DE NATAL 🎄",
   features: [
     "✨ Desenhos natalinos infinitos",
@@ -14,14 +14,18 @@ const comboKids = {
     "🎄 Acesso vitalício à plataforma",
     "📚 Livro PDF histórias infantis",
     "🎵 Playlist músicas para acalmar",
-    "📖 Estudo bíblico infantil completo",
-    "🎬 Vídeos de ensinamentos cristãos",
-    "📕 Livro Boobie Goods para imprimir",
     "🖨️ Imprimir quantas vezes quiser",
     "🆕 Novos desenhos toda semana",
-    "💬 Suporte WhatsApp direto",
   ],
-  discount: "93% OFF",
+  discount: "95% OFF",
+  badges: [
+    "🎨 Lousa Digital Interativa",
+    "🖍️ +1000 Desenhos Disponíveis",
+    "📱 Acesso Mobile e Tablet",
+    "🌟 Atualizações Semanais",
+    "⚡ Download Instantâneo",
+    "🎁 Conteúdo Exclusivo",
+  ],
 };
 
 export const PricingSection = () => {
@@ -94,7 +98,7 @@ export const PricingSection = () => {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl p-4 md:p-6 mb-8 border border-primary/20">
+            <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl p-4 md:p-6 mb-6 border border-primary/20">
               <h4 className="text-lg md:text-xl font-bold text-center mb-4 text-foreground">
                 🎁 Tudo Incluído:
               </h4>
@@ -106,6 +110,19 @@ export const PricingSection = () => {
                   </li>
                 ))}
               </ul>
+            </div>
+
+            {/* Visual Badges */}
+            <div className="flex flex-wrap justify-center gap-2 mb-8">
+              {comboKids.badges.map((badge, i) => (
+                <div
+                  key={i}
+                  className="bg-gradient-to-r from-accent/20 to-primary/20 backdrop-blur-sm px-4 py-2 rounded-full border border-primary/30 text-xs md:text-sm font-semibold text-foreground animate-fade-in hover:scale-105 transition-transform"
+                  style={{ animationDelay: `${i * 0.1}s` }}
+                >
+                  {badge}
+                </div>
+              ))}
             </div>
 
             <Button
