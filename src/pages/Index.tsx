@@ -8,7 +8,6 @@ import { LeadMagnetSection } from "@/components/LeadMagnetSection";
 import { PricingSection } from "@/components/PricingSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { FAQSection } from "@/components/FAQSection";
-import { BibleVersePopup } from "@/components/BibleVersePopup";
 import { FinalCTA } from "@/components/FinalCTA";
 import { Footer } from "@/components/Footer";
 
@@ -20,7 +19,6 @@ const Index = () => {
       <AwardBadge />
       <HeroSection />
       <ProofPopup />
-      <BibleVersePopup />
       <BenefitsSection />
       <LeadMagnetSection />
       <PricingSection />
