@@ -34,24 +34,43 @@ const freeDrawings = [
 export const FreeDrawingsSection = () => {
   const handleDownload = async (imageUrl: string, title: string) => {
     try {
-      // Fetch the image and convert to blob for better mobile download
       const response = await fetch(imageUrl);
       const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
       
+      // Garantir que seja reconhecido como imagem JPEG
+      const imageBlob = new Blob([blob], { type: 'image/jpeg' });
+      const fileName = `natal-color-kids-${title.toLowerCase().replace(/\s+/g, "-")}.jpg`;
+      
+      // Tentar usar Web Share API primeiro (melhor para mobile/galeria)
+      if (navigator.share && navigator.canShare) {
+        const file = new File([imageBlob], fileName, { type: 'image/jpeg' });
+        
+        if (navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            files: [file],
+            title: title,
+            text: `Desenho ${title} - Natal Color Kids`
+          });
+          
+          toast.success(`"${title}" compartilhado! 🎁`, {
+            description: "Salve na galeria através do menu de compartilhamento!",
+          });
+          return;
+        }
+      }
+      
+      // Fallback: download tradicional
+      const url = window.URL.createObjectURL(imageBlob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = `natal-color-kids-${title.toLowerCase().replace(/\s+/g, "-")}.jpg`;
-      link.setAttribute("target", "_blank");
+      link.download = fileName;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      
-      // Clean up the URL object
-      setTimeout(() => window.URL.revokeObjectURL(url), 100);
+      window.URL.revokeObjectURL(url);
       
       toast.success(`"${title}" salvo! 🎁`, {
-        description: "Desenho pronto para colorir na sua galeria!",
+        description: "Desenho pronto para colorir!",
       });
     } catch (error) {
       toast.error("Erro ao baixar desenho", {
