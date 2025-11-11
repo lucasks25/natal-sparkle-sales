@@ -33,7 +33,7 @@ export const CountdownTimer = () => {
   }, []);
 
   return (
-    <div className="hidden md:flex fixed top-20 left-1/2 -translate-x-1/2 z-40 px-4 animate-fade-in">
+    <div className="hidden md:flex fixed top-20 left-0 right-0 z-40 justify-center px-4 animate-fade-in">
       <div className="bg-destructive/90 backdrop-blur-sm text-destructive-foreground px-4 py-2 rounded-full shadow-lg border border-destructive-foreground/20">
         <div className="flex items-center gap-2 text-sm">
           <Clock className="w-4 h-4" />

@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { Download, Gift, Sparkles } from "lucide-react";
 import { toast } from "sonner";
+import { useState } from "react";
 import arvoreNatal from "@/assets/desenho-arvore-natal.jpg";
 import presepio from "@/assets/desenho-presepio.jpg";
 import papaiNoel from "@/assets/desenho-papai-noel.jpg";
@@ -34,6 +36,11 @@ const freeDrawings = [
 
 export const FreeDrawingsSection = () => {
   const { ref, isVisible } = useScrollReveal();
+  const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
+  
+  const handleImageLoad = (index: number) => {
+    setLoadedImages(prev => ({ ...prev, [index]: true }));
+  };
   
   const handleDownload = async (imageUrl: string, title: string) => {
     try {
@@ -112,11 +119,18 @@ export const FreeDrawingsSection = () => {
                 style={{ animationDelay: `${delay}ms` }}
               onClick={() => handleDownload(drawing.image, drawing.title)}
             >
-              <div className="aspect-square bg-background rounded-2xl flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300 overflow-hidden border-2 border-border">
+              <div className="aspect-square bg-background rounded-2xl flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300 overflow-hidden border-2 border-border relative">
+                {!loadedImages[index] && (
+                  <Skeleton className="absolute inset-0 rounded-2xl" />
+                )}
                 <img 
                   src={drawing.image} 
                   alt={drawing.title}
-                  className="w-full h-full object-cover"
+                  className={`w-full h-full object-cover transition-opacity duration-300 ${
+                    loadedImages[index] ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  onLoad={() => handleImageLoad(index)}
+                  loading="lazy"
                 />
               </div>
               <div className="text-center">

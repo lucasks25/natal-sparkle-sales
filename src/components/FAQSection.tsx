@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { useParallax } from "@/hooks/use-parallax";
 import { HelpCircle, Sparkles } from "lucide-react";
 
 const faqs = [
@@ -52,25 +53,32 @@ const faqs = [
 
 export const FAQSection = () => {
   const { ref, isVisible } = useScrollReveal();
+  const parallaxOffset = useParallax(0.3);
   
   return (
     <section className="py-20 bg-gradient-to-b from-background via-accent/5 to-background relative overflow-hidden">
-      {/* Flocos decorativos */}
+      {/* Flocos decorativos com parallax */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(10)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute text-accent/10 animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              fontSize: `${20 + Math.random() * 20}px`,
-            }}
-          >
-            ❄️
-          </div>
-        ))}
+        {[...Array(10)].map((_, i) => {
+          const baseTop = Math.random() * 100;
+          const parallaxMultiplier = 0.5 + Math.random() * 0.5;
+          return (
+            <div
+              key={i}
+              className="absolute text-accent/10 animate-float"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${baseTop}%`,
+                transform: `translateY(${parallaxOffset * parallaxMultiplier}px)`,
+                transition: 'transform 0.1s ease-out',
+                animationDelay: `${Math.random() * 3}s`,
+                fontSize: `${20 + Math.random() * 20}px`,
+              }}
+            >
+              ❄️
+            </div>
+          );
+        })}
       </div>
 
       <div ref={ref} className="container mx-auto px-4 relative z-10">

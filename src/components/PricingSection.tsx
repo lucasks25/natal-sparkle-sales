@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { useParallax } from "@/hooks/use-parallax";
 import { Check, Sparkles, Gift } from "lucide-react";
 
 const comboKids = {
@@ -36,13 +37,20 @@ const comboKids = {
 
 export const PricingSection = () => {
   const { ref, isVisible } = useScrollReveal();
+  const parallaxOffset = useParallax(0.3);
   
   return (
     <section id="pricing" className="py-12 md:py-20 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden">
-      {/* Decorative elements - hidden on mobile */}
+      {/* Decorative elements com parallax - hidden on mobile */}
       <div className="absolute inset-0 pointer-events-none opacity-10 hidden md:block">
-        <Gift className="absolute top-10 left-10 w-20 h-20 text-primary animate-float" />
-        <Sparkles className="absolute bottom-20 right-20 w-16 h-16 text-accent animate-pulse" />
+        <Gift 
+          className="absolute top-10 left-10 w-20 h-20 text-primary animate-float" 
+          style={{ transform: `translateY(${parallaxOffset * 0.4}px)` }}
+        />
+        <Sparkles 
+          className="absolute bottom-20 right-20 w-16 h-16 text-accent animate-pulse" 
+          style={{ transform: `translateY(${parallaxOffset * 0.5}px)` }}
+        />
       </div>
 
       <div ref={ref} className="container mx-auto px-4 relative z-10">

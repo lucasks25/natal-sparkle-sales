@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { useParallax } from "@/hooks/use-parallax";
 import { Sparkles, Shield, Zap, Gift } from "lucide-react";
 
 export const FinalCTA = () => {
   const { ref, isVisible } = useScrollReveal();
+  const parallaxOffset = useParallax(0.4);
   
   const scrollToPricing = () => {
     const element = document.getElementById("pricing");
@@ -13,20 +15,26 @@ export const FinalCTA = () => {
   return (
     <section className="py-20 bg-gradient-to-br from-primary/10 via-accent/5 to-secondary/10 relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${3 + Math.random() * 2}s`,
-            }}
-          >
-            <Sparkles className="w-6 h-6 text-primary" />
-          </div>
-        ))}
+        {[...Array(20)].map((_, i) => {
+          const baseTop = Math.random() * 100;
+          const parallaxMultiplier = 0.3 + Math.random() * 0.4;
+          return (
+            <div
+              key={i}
+              className="absolute animate-float"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${baseTop}%`,
+                transform: `translateY(${parallaxOffset * parallaxMultiplier}px)`,
+                transition: 'transform 0.1s ease-out',
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${3 + Math.random() * 2}s`,
+              }}
+            >
+              <Sparkles className="w-6 h-6 text-primary" />
+            </div>
+          );
+        })}
       </div>
 
       <div ref={ref} className="container mx-auto px-4 relative z-10">
