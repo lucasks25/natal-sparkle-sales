@@ -1,7 +1,21 @@
 import { Button } from "@/components/ui/button";
-import { Snowflake, Sparkles, Gift } from "lucide-react";
+import { Snowflake, Sparkles, Gift, AlertCircle } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export const HeroSection = () => {
+  const [accessCount, setAccessCount] = useState(47);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAccessCount((prev) => {
+        const newCount = prev - 1;
+        return newCount < 15 ? 50 : newCount;
+      });
+    }, Math.random() * 8000 + 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const scrollToPricing = () => {
     const element = document.getElementById("pricing");
     element?.scrollIntoView({ behavior: "smooth" });
@@ -27,6 +41,14 @@ export const HeroSection = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
+          {/* Urgency Counter */}
+          <div className="mb-4 md:mb-6 inline-flex items-center gap-2 bg-destructive/90 backdrop-blur-sm text-destructive-foreground px-4 py-2 rounded-full shadow-lg animate-pulse">
+            <AlertCircle className="w-4 h-4" />
+            <span className="text-xs md:text-sm font-bold">
+              Últimos {accessCount} acessos com desconto ativo!
+            </span>
+          </div>
+
           {/* Animated character - menor em mobile */}
           <div className="mb-6 md:mb-8 flex justify-center">
             <div className="relative animate-float">

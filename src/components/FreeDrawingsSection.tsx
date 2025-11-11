@@ -2,34 +2,45 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Download, Gift } from "lucide-react";
 import { toast } from "sonner";
+import arvoreNatal from "@/assets/desenho-arvore-natal.jpg";
+import presepio from "@/assets/desenho-presepio.jpg";
+import papaiNoel from "@/assets/desenho-papai-noel.jpg";
+import anjinho from "@/assets/desenho-anjinho.jpg";
 
 const freeDrawings = [
   {
     title: "Árvore de Natal",
     category: "Clássico",
-    thumbnail: "🎄",
+    image: arvoreNatal,
   },
   {
     title: "Presépio",
     category: "Tema Cristão",
-    thumbnail: "⭐",
+    image: presepio,
   },
   {
     title: "Papai Noel",
     category: "Personagens",
-    thumbnail: "🎅",
+    image: papaiNoel,
   },
   {
     title: "Anjinho",
     category: "Tema Cristão",
-    thumbnail: "👼",
+    image: anjinho,
   },
 ];
 
 export const FreeDrawingsSection = () => {
-  const handleDownload = (title: string) => {
+  const handleDownload = (imageUrl: string, title: string) => {
+    const link = document.createElement("a");
+    link.href = imageUrl;
+    link.download = `${title.toLowerCase().replace(/\s+/g, "-")}.jpg`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
     toast.success(`Baixando "${title}"! 🎁`, {
-      description: "Seu desenho gratuito está sendo preparado...",
+      description: "Seu desenho gratuito está pronto para colorir!",
     });
   };
 
@@ -57,12 +68,14 @@ export const FreeDrawingsSection = () => {
               key={index}
               className="p-4 md:p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group border-2 hover:border-primary/50 animate-fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
-              onClick={() => handleDownload(drawing.title)}
+              onClick={() => handleDownload(drawing.image, drawing.title)}
             >
-              <div className="aspect-square bg-gradient-to-br from-muted to-muted/50 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300">
-                <span className="text-5xl md:text-6xl group-hover:animate-bounce">
-                  {drawing.thumbnail}
-                </span>
+              <div className="aspect-square bg-background rounded-2xl flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300 overflow-hidden border-2 border-border">
+                <img 
+                  src={drawing.image} 
+                  alt={drawing.title}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="text-center">
                 <span className="inline-block text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-full mb-2">
@@ -77,7 +90,7 @@ export const FreeDrawingsSection = () => {
                   className="w-full gap-2 group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleDownload(drawing.title);
+                    handleDownload(drawing.image, drawing.title);
                   }}
                 >
                   <Download className="w-4 h-4" />
