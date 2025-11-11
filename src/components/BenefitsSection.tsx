@@ -1,9 +1,9 @@
 import { Card } from "@/components/ui/card";
-import { Infinity, Home, Zap, Church, Heart, Shield } from "lucide-react";
+import { Sparkles, Home, Gift, Church, Palette, Shield } from "lucide-react";
 
 const benefits = [
   {
-    icon: Infinity,
+    icon: Sparkles,
     title: "Desenhos Infinitos",
     description:
       "Acesso ilimitado a centenas de desenhos natalinos para toda a família.",
@@ -17,7 +17,7 @@ const benefits = [
     color: "from-secondary to-secondary/80",
   },
   {
-    icon: Zap,
+    icon: Gift,
     title: "Acesso Instantâneo",
     description:
       "Comece a usar imediatamente após a compra. Sem espera, sem complicação.",
@@ -31,7 +31,7 @@ const benefits = [
     color: "from-primary/80 to-secondary",
   },
   {
-    icon: Heart,
+    icon: Palette,
     title: "Desenvolve Criatividade",
     description:
       "Estimula coordenação motora, concentração e expressão artística.",
