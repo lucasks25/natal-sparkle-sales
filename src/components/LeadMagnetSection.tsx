@@ -4,11 +4,11 @@ import { Input } from "@/components/ui/input";
 import { DeviceMockup } from "@/components/DeviceMockup";
 import { Gift, Sparkles, Mail, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import preview1 from "@/assets/preview-1.jpg";
-import preview2 from "@/assets/preview-2.jpg";
-import preview3 from "@/assets/preview-3.jpg";
-import preview4 from "@/assets/preview-4.jpg";
-import preview5 from "@/assets/preview-5.jpg";
+import mobilePreview1 from "@/assets/mobile-preview-1.jpg";
+import mobilePreview2 from "@/assets/mobile-preview-2.jpg";
+import mobilePreview3 from "@/assets/mobile-preview-3.jpg";
+import tabletPreview1 from "@/assets/tablet-preview-1.jpg";
+import mobilePreview4 from "@/assets/mobile-preview-4.jpg";
 
 export const LeadMagnetSection = () => {
   const [email, setEmail] = useState("");
@@ -17,11 +17,11 @@ export const LeadMagnetSection = () => {
   const { toast } = useToast();
 
   const previews = [
-    { image: preview1, device: "desktop", alt: "Desenho de Árvore de Natal" },
-    { image: preview2, device: "mobile", alt: "Desenho de Papai Noel" },
-    { image: preview3, device: "desktop", alt: "Desenho de Presépio" },
-    { image: preview4, device: "mobile", alt: "Desenho de Rena" },
-    { image: preview5, device: "desktop", alt: "Desenho de Boneco de Neve" },
+    { image: mobilePreview1, device: "mobile", alt: "Árvore de Natal - Glória a Deus nas alturas" },
+    { image: mobilePreview2, device: "mobile", alt: "Papai Noel - Hoje nasceu o Salvador" },
+    { image: mobilePreview3, device: "mobile", alt: "Presépio - O Verbo se fez carne" },
+    { image: tabletPreview1, device: "mobile", alt: "Rena - Instrui o menino no caminho" },
+    { image: mobilePreview4, device: "mobile", alt: "Boneco de Neve - Porque Deus amou o mundo" },
   ];
 
   const handleSubmit = (e: React.FormEvent) => {

@@ -1,4 +1,6 @@
 import { Header } from "@/components/Header";
+import { CountdownTimer } from "@/components/CountdownTimer";
+import { AwardBadge } from "@/components/AwardBadge";
 import { HeroSection } from "@/components/HeroSection";
 import { ProofPopup } from "@/components/ProofPopup";
 import { BenefitsSection } from "@/components/BenefitsSection";
@@ -14,6 +16,8 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Header />
+      <CountdownTimer />
+      <AwardBadge />
       <HeroSection />
       <ProofPopup />
       <BibleVersePopup />
