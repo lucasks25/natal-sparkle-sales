@@ -60,24 +60,24 @@ export const BenefitsSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-6xl mx-auto">
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon;
             return (
               <Card
                 key={index}
-                className="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group border-2 hover:border-primary/50 animate-fade-in"
+                className="p-4 md:p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group border-2 hover:border-primary/50 animate-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div
-                  className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${benefit.color} flex items-center justify-center mb-4 group-hover:animate-bounce`}
+                  className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br ${benefit.color} flex items-center justify-center mb-3 md:mb-4 group-hover:animate-bounce`}
                 >
-                  <Icon className="w-7 h-7 text-primary-foreground" />
+                  <Icon className="w-6 h-6 md:w-7 md:h-7 text-primary-foreground" />
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
+                <h3 className="text-base md:text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
                   {benefit.title}
                 </h3>
-                <p className="text-muted-foreground">{benefit.description}</p>
+                <p className="text-sm md:text-base text-muted-foreground">{benefit.description}</p>
               </Card>
             );
           })}
