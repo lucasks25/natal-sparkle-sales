@@ -33,7 +33,7 @@ export const ViewersPopup = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed top-20 md:top-24 right-4 z-50 animate-fade-in">
+    <div className="fixed bottom-24 md:bottom-4 left-4 z-50 animate-fade-in">
       <div className="bg-card/95 backdrop-blur-sm border border-primary/30 rounded-lg shadow-lg px-3 py-2 flex items-center gap-2">
         <div className="w-2 h-2 bg-secondary rounded-full animate-pulse"></div>
         <Eye className="w-4 h-4 text-muted-foreground" />

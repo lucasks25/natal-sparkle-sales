@@ -5,7 +5,8 @@ import { HeroSection } from "@/components/HeroSection";
 import { ViewersPopup } from "@/components/ViewersPopup";
 import { PurchasePopup } from "@/components/PurchasePopup";
 import { BenefitsSection } from "@/components/BenefitsSection";
-import { ColoringPreview } from "@/components/ColoringPreview";
+import { HowItWorksSection } from "@/components/HowItWorksSection";
+import { FreeDrawingsSection } from "@/components/FreeDrawingsSection";
 import { PricingSection } from "@/components/PricingSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { FAQSection } from "@/components/FAQSection";
@@ -22,7 +23,8 @@ const Index = () => {
       <ViewersPopup />
       <PurchasePopup />
       <BenefitsSection />
-      <ColoringPreview />
+      <HowItWorksSection />
+      <FreeDrawingsSection />
       <PricingSection />
       <TestimonialsSection />
       <FAQSection />
