@@ -8,6 +8,7 @@ export const useParallax = (speed: number = 0.5) => {
       setOffsetY(window.scrollY * speed);
     };
 
+    handleScroll(); // Execute imediatamente para estado inicial
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [speed]);

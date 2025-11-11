@@ -1,6 +1,7 @@
 import { ShoppingCart, Zap, Printer } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { useParallax } from "@/hooks/use-parallax";
 
 const steps = [
   {
@@ -28,10 +29,28 @@ const steps = [
 
 export const HowItWorksSection = () => {
   const { ref, isVisible } = useScrollReveal();
+  const parallaxSlow = useParallax(0.3);
+  const parallaxFast = useParallax(0.6);
   
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-background to-muted/30 overflow-hidden">
-      <div ref={ref} className="container mx-auto px-4">
+    <section className="py-16 md:py-24 bg-gradient-to-b from-background to-muted/30 overflow-hidden relative">
+      {/* Elementos decorativos flutuantes com parallax */}
+      <div className="absolute inset-0 pointer-events-none opacity-5 hidden md:block">
+        <ShoppingCart 
+          className="absolute top-20 right-20 w-32 h-32 text-primary" 
+          style={{ transform: `translateY(${parallaxSlow}px) rotate(15deg)` }}
+        />
+        <Zap 
+          className="absolute bottom-32 left-16 w-28 h-28 text-secondary" 
+          style={{ transform: `translateY(${parallaxFast}px) rotate(-20deg)` }}
+        />
+        <Printer 
+          className="absolute top-1/2 right-32 w-24 h-24 text-accent" 
+          style={{ transform: `translateY(${parallaxSlow * 1.5}px) rotate(10deg)` }}
+        />
+      </div>
+      
+      <div ref={ref} className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12 md:mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
             Como Funciona?

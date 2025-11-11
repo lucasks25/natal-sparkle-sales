@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { useParallax } from "@/hooks/use-parallax";
 import { Star, Heart } from "lucide-react";
 
 const testimonials = [
@@ -44,10 +45,30 @@ const testimonials = [
 
 export const TestimonialsSection = () => {
   const { ref, isVisible } = useScrollReveal();
+  const parallaxOffset = useParallax(0.4);
   
   return (
-    <section id="testimonials" className="py-20 bg-muted/30">
-      <div ref={ref} className="container mx-auto px-4">
+    <section id="testimonials" className="py-20 bg-muted/30 relative overflow-hidden">
+      {/* Corações flutuantes com parallax */}
+      <div className="absolute inset-0 pointer-events-none opacity-5 hidden md:block">
+        {[...Array(8)].map((_, i) => (
+          <Heart
+            key={i}
+            className="absolute text-primary animate-pulse"
+            style={{
+              width: `${30 + Math.random() * 40}px`,
+              height: `${30 + Math.random() * 40}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              transform: `translateY(${parallaxOffset * (0.3 + Math.random() * 0.5)}px)`,
+              transition: 'transform 0.1s ease-out',
+              animationDelay: `${Math.random() * 2}s`,
+            }}
+          />
+        ))}
+      </div>
+      
+      <div ref={ref} className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             O Que Nossos Clientes Dizem

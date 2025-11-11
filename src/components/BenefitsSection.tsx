@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { useParallax } from "@/hooks/use-parallax";
 import { Sparkles, Home, Gift, Church, Palette, Shield } from "lucide-react";
 
 const benefits = [
@@ -49,10 +50,27 @@ const benefits = [
 
 export const BenefitsSection = () => {
   const { ref, isVisible } = useScrollReveal();
+  const parallaxOffset = useParallax(0.5);
   
   return (
-    <section id="benefits" className="py-20 bg-muted/30">
-      <div ref={ref} className="container mx-auto px-4">
+    <section id="benefits" className="py-20 bg-muted/30 relative overflow-hidden">
+      {/* Elementos decorativos com parallax */}
+      <div className="absolute inset-0 pointer-events-none opacity-10">
+        <Gift 
+          className="absolute top-10 right-10 w-24 h-24 text-primary animate-float hidden md:block" 
+          style={{ transform: `translateY(${parallaxOffset * 0.6}px)` }}
+        />
+        <Sparkles 
+          className="absolute bottom-20 left-10 w-20 h-20 text-accent animate-pulse hidden md:block" 
+          style={{ transform: `translateY(${parallaxOffset * 0.4}px)` }}
+        />
+        <Church 
+          className="absolute top-1/2 left-5 w-16 h-16 text-secondary animate-float hidden md:block" 
+          style={{ transform: `translateY(${parallaxOffset * 0.7}px)` }}
+        />
+      </div>
+      
+      <div ref={ref} className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-3 md:mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Por Que Escolher Natal Color Kids?
