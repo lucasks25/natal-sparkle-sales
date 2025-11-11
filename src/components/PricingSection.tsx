@@ -18,12 +18,17 @@ const comboKids = {
     "🆕 Novos desenhos toda semana",
   ],
   discount: "95% OFF",
+  bonuses: [
+    { emoji: "🎨", title: "Lousa Digital Interativa", value: "R$ 49,90" },
+    { emoji: "📚", title: "Livro de Histórias PDF", value: "R$ 39,90" },
+    { emoji: "🎵", title: "Playlist Premium Acalmar", value: "R$ 29,90" },
+    { emoji: "🎄", title: "+1000 Desenhos Exclusivos", value: "R$ 89,90" },
+    { emoji: "🆕", title: "Atualizações Vitalícias", value: "R$ 59,90" },
+    { emoji: "⚡", title: "Download Ilimitado", value: "R$ 19,90" },
+  ],
   badges: [
-    "🎨 Lousa Digital Interativa",
-    "🖍️ +1000 Desenhos Disponíveis",
     "📱 Acesso Mobile e Tablet",
     "🌟 Atualizações Semanais",
-    "⚡ Download Instantâneo",
     "🎁 Conteúdo Exclusivo",
   ],
 };
@@ -98,6 +103,19 @@ export const PricingSection = () => {
               </div>
             </div>
 
+            {/* Scarcity Counter */}
+            <div className="bg-gradient-to-r from-destructive/20 via-destructive/30 to-destructive/20 rounded-xl p-4 mb-6 border-2 border-destructive/40 animate-pulse">
+              <div className="text-center">
+                <p className="text-sm md:text-base font-bold text-destructive mb-2">
+                  ⚠️ ATENÇÃO: Apenas {Math.floor(Math.random() * 8) + 12} vagas restantes!
+                </p>
+                <p className="text-xs md:text-sm text-muted-foreground">
+                  🔥 {Math.floor(Math.random() * 50) + 150} pessoas compraram nas últimas 24h
+                </p>
+              </div>
+            </div>
+
+            {/* Main Features */}
             <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl p-4 md:p-6 mb-6 border border-primary/20">
               <h4 className="text-lg md:text-xl font-bold text-center mb-4 text-foreground">
                 🎁 Tudo Incluído:
@@ -110,6 +128,42 @@ export const PricingSection = () => {
                   </li>
                 ))}
               </ul>
+            </div>
+
+            {/* Bonus Stack */}
+            <div className="bg-gradient-to-br from-accent/10 to-primary/10 rounded-2xl p-4 md:p-6 mb-6 border-2 border-accent/30">
+              <div className="text-center mb-4">
+                <h4 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent mb-2">
+                  🎁 BÔNUS EXCLUSIVOS
+                </h4>
+                <p className="text-xs md:text-sm text-muted-foreground">
+                  Valor total em bônus: <span className="font-bold text-accent line-through">R$ 289,90</span>
+                </p>
+              </div>
+              <div className="space-y-3">
+                {comboKids.bonuses.map((bonus, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center justify-between bg-background/50 backdrop-blur-sm rounded-xl p-3 border border-border/50 hover:border-accent/50 transition-all animate-fade-in hover:scale-105"
+                    style={{ animationDelay: `${i * 0.1}s` }}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl md:text-3xl">{bonus.emoji}</span>
+                      <span className="text-xs md:text-sm font-semibold text-foreground">
+                        {bonus.title}
+                      </span>
+                    </div>
+                    <span className="text-xs md:text-sm font-bold text-accent bg-accent/10 px-3 py-1 rounded-full">
+                      GRÁTIS
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 text-center p-3 bg-accent/20 rounded-lg border border-accent/30">
+                <p className="text-sm md:text-base font-bold text-foreground">
+                  💰 Você economiza: <span className="text-accent text-lg md:text-xl">R$ 275,00</span>
+                </p>
+              </div>
             </div>
 
             {/* Visual Badges */}

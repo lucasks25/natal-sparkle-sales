@@ -143,6 +143,12 @@ export const FreeDrawingsSection = () => {
           <Button
             size="lg"
             className="gap-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+            onClick={() => {
+              document.getElementById('pricing')?.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }}
           >
             <Gift className="w-5 h-5" />
             Ver Todos os Planos
