@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { HelpCircle, Sparkles } from "lucide-react";
 
 const faqs = [
@@ -50,6 +51,8 @@ const faqs = [
 ];
 
 export const FAQSection = () => {
+  const { ref, isVisible } = useScrollReveal();
+  
   return (
     <section className="py-20 bg-gradient-to-b from-background via-accent/5 to-background relative overflow-hidden">
       {/* Flocos decorativos */}
@@ -70,7 +73,7 @@ export const FAQSection = () => {
         ))}
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div ref={ref} className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 animate-fade-in">
           <div className="inline-block mb-4">
             <HelpCircle className="w-16 h-16 text-primary mx-auto animate-bounce" />
@@ -85,12 +88,16 @@ export const FAQSection = () => {
 
         <div className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible className="space-y-4">
-            {faqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="bg-card border-2 border-border rounded-2xl px-6 hover:border-primary/50 transition-all duration-300 hover:shadow-lg animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
+            {faqs.map((faq, index) => {
+              const delay = index * 100;
+              return (
+                <AccordionItem
+                  key={index}
+                  value={`item-${index}`}
+                  className={`bg-card border-2 border-border rounded-2xl px-6 hover:border-primary/50 transition-all duration-300 hover:shadow-lg ${
+                    isVisible ? 'animate-fade-in' : 'opacity-0'
+                  }`}
+                  style={{ animationDelay: `${delay}ms` }}
               >
                 <AccordionTrigger className="text-left hover:text-primary transition-colors py-6">
                   <div className="flex items-start gap-3">
@@ -98,11 +105,12 @@ export const FAQSection = () => {
                     <span className="font-semibold text-lg">{faq.question}</span>
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-6 pl-8">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
+                  <AccordionContent className="text-muted-foreground pb-6 pl-8">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              );
+            })}
           </Accordion>
         </div>
 

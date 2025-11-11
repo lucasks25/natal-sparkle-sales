@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { Download, Gift, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import arvoreNatal from "@/assets/desenho-arvore-natal.jpg";
@@ -32,6 +33,8 @@ const freeDrawings = [
 ];
 
 export const FreeDrawingsSection = () => {
+  const { ref, isVisible } = useScrollReveal();
+  
   const handleDownload = async (imageUrl: string, title: string) => {
     try {
       const response = await fetch(imageUrl);
@@ -81,7 +84,7 @@ export const FreeDrawingsSection = () => {
 
   return (
     <section className="py-16 md:py-20 bg-gradient-to-b from-muted/30 to-background">
-      <div className="container mx-auto px-4">
+      <div ref={ref} className="container mx-auto px-4">
         <div className="text-center mb-12 animate-fade-in">
           <div className="inline-flex items-center gap-2 bg-secondary/20 px-4 py-2 rounded-full mb-4">
             <Gift className="w-5 h-5 text-secondary" />
@@ -98,11 +101,15 @@ export const FreeDrawingsSection = () => {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto mb-8">
-          {freeDrawings.map((drawing, index) => (
-            <Card
-              key={index}
-              className="p-4 md:p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group border-2 hover:border-primary/50 animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
+          {freeDrawings.map((drawing, index) => {
+            const delay = index * 100;
+            return (
+              <Card
+                key={index}
+                className={`p-4 md:p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group border-2 hover:border-primary/50 ${
+                  isVisible ? 'animate-fade-in' : 'opacity-0'
+                }`}
+                style={{ animationDelay: `${delay}ms` }}
               onClick={() => handleDownload(drawing.image, drawing.title)}
             >
               <div className="aspect-square bg-background rounded-2xl flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300 overflow-hidden border-2 border-border">
@@ -133,7 +140,8 @@ export const FreeDrawingsSection = () => {
                 </Button>
               </div>
             </Card>
-          ))}
+            );
+          })}
         </div>
 
         <div className="text-center">

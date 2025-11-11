@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { Sparkles, Shield, Zap, Gift } from "lucide-react";
 
 export const FinalCTA = () => {
+  const { ref, isVisible } = useScrollReveal();
+  
   const scrollToPricing = () => {
     const element = document.getElementById("pricing");
     element?.scrollIntoView({ behavior: "smooth" });
@@ -26,8 +29,8 @@ export const FinalCTA = () => {
         ))}
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+      <div ref={ref} className="container mx-auto px-4 relative z-10">
+        <div className={`max-w-4xl mx-auto text-center ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
           <div className="mb-8 flex justify-center">
             <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary via-accent to-secondary flex items-center justify-center shadow-2xl animate-glow">
               <Gift className="w-12 h-12 text-primary-foreground animate-bounce" />

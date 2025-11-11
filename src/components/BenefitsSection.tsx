@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { Sparkles, Home, Gift, Church, Palette, Shield } from "lucide-react";
 
 const benefits = [
@@ -47,9 +48,11 @@ const benefits = [
 ];
 
 export const BenefitsSection = () => {
+  const { ref, isVisible } = useScrollReveal();
+  
   return (
     <section id="benefits" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
+      <div ref={ref} className="container mx-auto px-4">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-3 md:mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Por Que Escolher Natal Color Kids?
@@ -62,11 +65,14 @@ export const BenefitsSection = () => {
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-6xl mx-auto">
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon;
+            const delay = index * 100;
             return (
               <Card
                 key={index}
-                className="p-4 md:p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group border-2 hover:border-primary/50 animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className={`p-4 md:p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group border-2 hover:border-primary/50 ${
+                  isVisible ? 'animate-fade-in' : 'opacity-0'
+                }`}
+                style={{ animationDelay: `${delay}ms` }}
               >
                 <div
                   className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br ${benefit.color} flex items-center justify-center mb-3 md:mb-4 group-hover:animate-bounce`}

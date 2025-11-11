@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { Check, Sparkles, Gift } from "lucide-react";
 
 const comboKids = {
@@ -34,6 +35,8 @@ const comboKids = {
 };
 
 export const PricingSection = () => {
+  const { ref, isVisible } = useScrollReveal();
+  
   return (
     <section id="pricing" className="py-12 md:py-20 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden">
       {/* Decorative elements - hidden on mobile */}
@@ -42,7 +45,7 @@ export const PricingSection = () => {
         <Sparkles className="absolute bottom-20 right-20 w-16 h-16 text-accent animate-pulse" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div ref={ref} className="container mx-auto px-4 relative z-10">
         {/* Header - compacto em mobile */}
         <div className="text-center mb-6 md:mb-12 animate-fade-in">
           <div className="inline-flex items-center gap-2 bg-destructive/20 backdrop-blur-sm px-3 py-1.5 md:px-4 md:py-2 rounded-full mb-3 md:mb-4 border border-destructive/30">
@@ -60,7 +63,9 @@ export const PricingSection = () => {
         </div>
 
         <div className="max-w-2xl mx-auto">
-          <Card className="relative p-4 md:p-10 border-2 md:border-4 border-primary shadow-2xl hover:shadow-3xl transition-all duration-300 md:hover:-translate-y-2 group animate-fade-in bg-gradient-to-br from-background via-background to-primary/5 overflow-visible">
+          <Card className={`relative p-4 md:p-10 border-2 md:border-4 border-primary shadow-2xl hover:shadow-3xl transition-all duration-300 md:hover:-translate-y-2 group bg-gradient-to-br from-background via-background to-primary/5 overflow-visible ${
+            isVisible ? 'animate-fade-in' : 'opacity-0'
+          }`}>
             {/* Animated characters - desktop only */}
             <div className="hidden md:block absolute -top-12 -right-8 opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-125 group-hover:rotate-12">
               <span className="text-7xl animate-bounce">🎅</span>

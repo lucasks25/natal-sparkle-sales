@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { Star, Heart } from "lucide-react";
 
 const testimonials = [
@@ -42,9 +43,11 @@ const testimonials = [
 ];
 
 export const TestimonialsSection = () => {
+  const { ref, isVisible } = useScrollReveal();
+  
   return (
     <section id="testimonials" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
+      <div ref={ref} className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             O Que Nossos Clientes Dizem
@@ -55,11 +58,15 @@ export const TestimonialsSection = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {testimonials.map((testimonial, index) => (
-            <Card
-              key={index}
-              className="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/30 animate-fade-in relative overflow-hidden group"
-              style={{ animationDelay: `${index * 0.1}s` }}
+          {testimonials.map((testimonial, index) => {
+            const delay = index * 100;
+            return (
+              <Card
+                key={index}
+                className={`p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/30 relative overflow-hidden group ${
+                  isVisible ? 'animate-fade-in' : 'opacity-0'
+                }`}
+                style={{ animationDelay: `${delay}ms` }}
             >
               <div className="absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity">
                 <Heart className="w-8 h-8 text-primary/20 animate-pulse" />
@@ -94,10 +101,11 @@ export const TestimonialsSection = () => {
               </div>
 
               <p className="text-foreground/80 leading-relaxed">
-                "{testimonial.text}"
-              </p>
-            </Card>
-          ))}
+              "{testimonial.text}"
+            </p>
+              </Card>
+            );
+          })}
         </div>
       </div>
     </section>

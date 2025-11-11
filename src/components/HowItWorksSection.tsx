@@ -1,5 +1,6 @@
 import { ShoppingCart, Zap, Printer } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const steps = [
   {
@@ -26,9 +27,11 @@ const steps = [
 ];
 
 export const HowItWorksSection = () => {
+  const { ref, isVisible } = useScrollReveal();
+  
   return (
     <section className="py-16 md:py-24 bg-gradient-to-b from-background to-muted/30 overflow-hidden">
-      <div className="container mx-auto px-4">
+      <div ref={ref} className="container mx-auto px-4">
         <div className="text-center mb-12 md:mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
             Como Funciona?
@@ -44,11 +47,14 @@ export const HowItWorksSection = () => {
           
           {steps.map((step, index) => {
             const Icon = step.icon;
+            const delay = index * 150;
             return (
               <Card
                 key={index}
-                className="relative p-6 md:p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 cursor-pointer group border-2 hover:border-primary/50 animate-fade-in z-10 bg-card"
-                style={{ animationDelay: `${index * 0.2}s` }}
+                className={`relative p-6 md:p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 cursor-pointer group border-2 hover:border-primary/50 z-10 bg-card ${
+                  isVisible ? 'animate-fade-in' : 'opacity-0'
+                }`}
+                style={{ animationDelay: `${delay}ms` }}
               >
                 {/* Step Number Badge */}
                 <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-primary-foreground font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
