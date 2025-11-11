@@ -77,13 +77,29 @@ export const PricingSection = () => {
             return (
               <Card
                 key={index}
-                className={`relative p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 ${
+                className={`relative p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group ${
                   plan.popular
                     ? "border-2 border-primary shadow-xl scale-105"
                     : "border-2 hover:border-primary/50"
-                } animate-fade-in`}
+                } animate-fade-in overflow-visible`}
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
+                {/* Personagens animados */}
+                <div className="absolute -top-10 -right-8 opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110 group-hover:rotate-12">
+                  <span className="text-6xl animate-bounce" style={{ animationDelay: `${index * 0.1}s` }}>
+                    {index === 0 && "🎄"}
+                    {index === 1 && "🎅"}
+                    {index === 2 && "⭐"}
+                  </span>
+                </div>
+                <div className="absolute -bottom-8 -left-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110 group-hover:-rotate-12">
+                  <span className="text-5xl animate-float" style={{ animationDelay: `${index * 0.15}s` }}>
+                    {index === 0 && "🎁"}
+                    {index === 1 && "🌟"}
+                    {index === 2 && "✨"}
+                  </span>
+                </div>
+
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-accent text-primary-foreground px-4 py-1 rounded-full text-sm font-bold shadow-lg animate-pulse">
                     Mais Popular 🔥
