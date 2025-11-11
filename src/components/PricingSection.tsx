@@ -4,51 +4,57 @@ import { Check, Star, Sparkles, Crown } from "lucide-react";
 
 const plans = [
   {
-    name: "Básico",
-    price: "R$ 27",
-    description: "Perfeito para começar",
+    name: "Plataforma",
+    originalPrice: "R$ 89,90",
+    price: "R$ 14,90",
+    description: "Acesso completo à plataforma",
     features: [
-      "50 desenhos natalinos",
-      "Acesso por 30 dias",
+      "Desenhos natalinos infinitos",
+      "Acesso vitalício",
       "Imprimir quantas vezes quiser",
+      "Novos desenhos toda semana",
       "Suporte por email",
     ],
     icon: Star,
     color: "from-primary/20 to-primary/10",
     buttonVariant: "outline" as const,
+    discount: "83% OFF",
   },
   {
-    name: "Completo",
-    price: "R$ 47",
-    description: "Mais vendido!",
+    name: "Combo Família",
+    originalPrice: "R$ 129,90",
+    price: "R$ 19,90",
+    description: "Mais vendido! 🔥",
     features: [
-      "Desenhos ilimitados",
-      "Acesso vitalício",
-      "Temas cristãos exclusivos",
-      "Novos desenhos toda semana",
+      "Tudo da Plataforma +",
+      "Livro PDF histórias infantis",
+      "Playlist músicas para acalmar",
+      "Histórias educativas prontas",
       "Suporte prioritário",
-      "Bônus: Guia de atividades",
     ],
     icon: Crown,
     color: "from-accent via-primary to-secondary",
     buttonVariant: "default" as const,
     popular: true,
+    discount: "85% OFF",
   },
   {
-    name: "Premium",
-    price: "R$ 67",
-    description: "Experiência completa",
+    name: "Combo Cristão",
+    originalPrice: "R$ 289,90",
+    price: "R$ 49,00",
+    description: "Experiência completa cristã",
     features: [
-      "Tudo do Completo +",
-      "Kit de stickers digitais",
-      "Vídeos tutoriais exclusivos",
-      "Acesso a comunidade VIP",
-      "Certificado de participação",
+      "Tudo do Combo Família +",
+      "Estudo bíblico infantil completo",
+      "Vídeos de ensinamentos cristãos",
+      "Livro Boobie Goods para imprimir",
+      "Conteúdo cristão exclusivo",
       "Suporte WhatsApp direto",
     ],
     icon: Sparkles,
     color: "from-secondary/20 to-accent/10",
     buttonVariant: "outline" as const,
+    discount: "83% OFF",
   },
 ];
 
@@ -106,12 +112,22 @@ export const PricingSection = () => {
                 </p>
 
                 <div className="text-center mb-6">
-                  <span className="text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                    {plan.price}
-                  </span>
-                  <span className="text-muted-foreground ml-2">
-                    pagamento único
-                  </span>
+                  <div className="mb-2">
+                    <span className="text-lg text-muted-foreground line-through">
+                      {plan.originalPrice}
+                    </span>
+                    <span className="ml-2 inline-block px-3 py-1 bg-destructive/20 text-destructive font-bold rounded-full text-sm animate-pulse">
+                      {plan.discount}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                      {plan.price}
+                    </span>
+                    <span className="text-muted-foreground ml-2 block mt-1">
+                      pagamento único
+                    </span>
+                  </div>
                 </div>
 
                 <ul className="space-y-3 mb-8">

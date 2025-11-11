@@ -2,6 +2,7 @@ import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
 import { ProofPopup } from "@/components/ProofPopup";
 import { BenefitsSection } from "@/components/BenefitsSection";
+import { LeadMagnetSection } from "@/components/LeadMagnetSection";
 import { PricingSection } from "@/components/PricingSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { FinalCTA } from "@/components/FinalCTA";
@@ -14,6 +15,7 @@ const Index = () => {
       <HeroSection />
       <ProofPopup />
       <BenefitsSection />
+      <LeadMagnetSection />
       <PricingSection />
       <TestimonialsSection />
       <FinalCTA />
