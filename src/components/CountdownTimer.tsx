@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Clock, Zap } from "lucide-react";
+import { Clock } from "lucide-react";
 
 export const CountdownTimer = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -33,34 +33,17 @@ export const CountdownTimer = () => {
   }, []);
 
   return (
-    <div className="fixed top-20 left-0 right-0 z-40 flex justify-center px-4 animate-slide-up">
-      <div className="bg-gradient-to-r from-destructive via-destructive/90 to-destructive text-destructive-foreground px-6 py-3 rounded-full shadow-2xl border-2 border-destructive-foreground/20 animate-pulse max-w-2xl w-full">
-        <div className="flex items-center justify-center gap-3 flex-wrap">
-          <Zap className="w-5 h-5 animate-bounce" />
-          <span className="font-bold text-sm md:text-base">
-            OFERTA EXPIRA EM:
-          </span>
-          <div className="flex gap-2 items-center">
-            <div className="bg-destructive-foreground/20 px-3 py-1 rounded-lg backdrop-blur-sm">
-              <span className="text-xl md:text-2xl font-bold tabular-nums">
-                {String(timeLeft.hours).padStart(2, "0")}
-              </span>
-              <span className="text-xs block">HORAS</span>
-            </div>
-            <span className="text-xl font-bold">:</span>
-            <div className="bg-destructive-foreground/20 px-3 py-1 rounded-lg backdrop-blur-sm">
-              <span className="text-xl md:text-2xl font-bold tabular-nums">
-                {String(timeLeft.minutes).padStart(2, "0")}
-              </span>
-              <span className="text-xs block">MIN</span>
-            </div>
-            <span className="text-xl font-bold">:</span>
-            <div className="bg-destructive-foreground/20 px-3 py-1 rounded-lg backdrop-blur-sm">
-              <span className="text-xl md:text-2xl font-bold tabular-nums">
-                {String(timeLeft.seconds).padStart(2, "0")}
-              </span>
-              <span className="text-xs block">SEG</span>
-            </div>
+    <div className="fixed top-20 left-1/2 -translate-x-1/2 z-40 px-4 animate-fade-in">
+      <div className="bg-destructive/90 backdrop-blur-sm text-destructive-foreground px-4 py-2 rounded-full shadow-lg border border-destructive-foreground/20">
+        <div className="flex items-center gap-2 text-sm">
+          <Clock className="w-4 h-4" />
+          <span className="font-semibold">Oferta expira em:</span>
+          <div className="flex gap-1">
+            <span className="font-bold tabular-nums">{String(timeLeft.hours).padStart(2, "0")}</span>
+            <span>:</span>
+            <span className="font-bold tabular-nums">{String(timeLeft.minutes).padStart(2, "0")}</span>
+            <span>:</span>
+            <span className="font-bold tabular-nums">{String(timeLeft.seconds).padStart(2, "0")}</span>
           </div>
         </div>
       </div>
