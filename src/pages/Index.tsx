@@ -2,9 +2,10 @@ import { Header } from "@/components/Header";
 import { CountdownTimer } from "@/components/CountdownTimer";
 import { AwardBadge } from "@/components/AwardBadge";
 import { HeroSection } from "@/components/HeroSection";
-import { ProofPopup } from "@/components/ProofPopup";
+import { ViewersPopup } from "@/components/ViewersPopup";
+import { PurchasePopup } from "@/components/PurchasePopup";
 import { BenefitsSection } from "@/components/BenefitsSection";
-import { LeadMagnetSection } from "@/components/LeadMagnetSection";
+import { ColoringPreview } from "@/components/ColoringPreview";
 import { PricingSection } from "@/components/PricingSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { FAQSection } from "@/components/FAQSection";
@@ -18,9 +19,10 @@ const Index = () => {
       <CountdownTimer />
       <AwardBadge />
       <HeroSection />
-      <ProofPopup />
+      <ViewersPopup />
+      <PurchasePopup />
       <BenefitsSection />
-      <LeadMagnetSection />
+      <ColoringPreview />
       <PricingSection />
       <TestimonialsSection />
       <FAQSection />
