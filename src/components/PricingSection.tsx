@@ -185,6 +185,7 @@ export const PricingSection = () => {
             {/* CTA Button */}
             <Button
               size="lg"
+              onClick={() => window.location.href = 'https://pay.cakto.com.br/aqa57iv_643367'}
               className="w-full text-sm md:text-xl py-5 md:py-8 bg-gradient-to-r from-primary via-accent to-secondary hover:from-primary/90 hover:via-accent/90 hover:to-secondary/90 shadow-2xl animate-glow group/btn mb-2 md:mb-4"
             >
               <Sparkles className="w-4 h-4 md:w-6 md:h-6 mr-2 group-hover/btn:animate-spin" />

@@ -5,9 +5,6 @@ import { useState, useEffect } from "react";
 
 export const HeroSection = () => {
   const [accessCount, setAccessCount] = useState(47);
-  const parallaxSlow = useParallax(0.2);
-  const parallaxMedium = useParallax(0.4);
-  const parallaxFast = useParallax(0.6);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -27,13 +24,12 @@ export const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-primary/5 to-background pt-16 md:pt-20">
-      {/* Animated snowflakes com parallax - mais visíveis */}
+      {/* Animated snowflakes - mais visíveis */}
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(15)].map((_, i) => {
           const size = 1 + Math.random() * 1.5;
           const left = Math.random() * 100;
           const animationDelay = Math.random() * 5;
-          const parallaxSpeed = i % 3 === 0 ? parallaxSlow : i % 3 === 1 ? parallaxMedium : parallaxFast;
           
           return (
             <Snowflake
@@ -41,8 +37,7 @@ export const HeroSection = () => {
               className="absolute text-primary/20 animate-snowfall hidden md:block"
               style={{
                 left: `${left}%`,
-                transform: `translateY(${parallaxSpeed}px)`,
-                transition: 'transform 0.05s ease-out',
+                top: '-5%',
                 animationDelay: `${animationDelay}s`,
                 animationDuration: `${8 + Math.random() * 4}s`,
                 fontSize: `${size}rem`,
