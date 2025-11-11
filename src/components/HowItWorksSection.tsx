@@ -47,7 +47,7 @@ export const HowItWorksSection = () => {
           
           {steps.map((step, index) => {
             const Icon = step.icon;
-            const delay = index * 150;
+            const delay = index * 120;
             return (
               <Card
                 key={index}

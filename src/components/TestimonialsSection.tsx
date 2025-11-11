@@ -59,7 +59,7 @@ export const TestimonialsSection = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {testimonials.map((testimonial, index) => {
-            const delay = index * 100;
+            const delay = index * 80;
             return (
               <Card
                 key={index}

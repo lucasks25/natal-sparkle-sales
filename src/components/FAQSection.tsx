@@ -89,7 +89,7 @@ export const FAQSection = () => {
         <div className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => {
-              const delay = index * 100;
+              const delay = index * 60;
               return (
                 <AccordionItem
                   key={index}

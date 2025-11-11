@@ -65,7 +65,7 @@ export const BenefitsSection = () => {
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-6xl mx-auto">
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon;
-            const delay = index * 100;
+            const delay = index * 80;
             return (
               <Card
                 key={index}

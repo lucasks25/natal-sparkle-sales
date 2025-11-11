@@ -102,7 +102,7 @@ export const FreeDrawingsSection = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto mb-8">
           {freeDrawings.map((drawing, index) => {
-            const delay = index * 100;
+            const delay = index * 80;
             return (
               <Card
                 key={index}
