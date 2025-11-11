@@ -32,17 +32,32 @@ const freeDrawings = [
 ];
 
 export const FreeDrawingsSection = () => {
-  const handleDownload = (imageUrl: string, title: string) => {
-    const link = document.createElement("a");
-    link.href = imageUrl;
-    link.download = `${title.toLowerCase().replace(/\s+/g, "-")}.jpg`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    
-    toast.success(`Baixando "${title}"! 🎁`, {
-      description: "Seu desenho gratuito está pronto para colorir!",
-    });
+  const handleDownload = async (imageUrl: string, title: string) => {
+    try {
+      // Fetch the image and convert to blob for better mobile download
+      const response = await fetch(imageUrl);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `natal-color-kids-${title.toLowerCase().replace(/\s+/g, "-")}.jpg`;
+      link.setAttribute("target", "_blank");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Clean up the URL object
+      setTimeout(() => window.URL.revokeObjectURL(url), 100);
+      
+      toast.success(`"${title}" salvo! 🎁`, {
+        description: "Desenho pronto para colorir na sua galeria!",
+      });
+    } catch (error) {
+      toast.error("Erro ao baixar desenho", {
+        description: "Tente novamente em instantes.",
+      });
+    }
   };
 
   return (
