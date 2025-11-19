@@ -12,10 +12,12 @@ import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { FAQSection } from "@/components/FAQSection";
 import { FinalCTA } from "@/components/FinalCTA";
 import { Footer } from "@/components/Footer";
+import { UtmifyPixel } from "@/components/UtmifyPixel";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <UtmifyPixel />
       <Header />
       <CountdownTimer />
       <AwardBadge />
